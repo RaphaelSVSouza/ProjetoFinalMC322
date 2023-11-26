@@ -1,6 +1,9 @@
 package aplicativo.models.pacotes;
 
 import java.util.List;
+import aplicativo.models.destino.Atividades;
+import aplicativo.models.destino.Estadia;
+import aplicativo.models.transportes.MeioTransporte;
 
 public class PacoteCompleto extends Pacote {
     private List<Atividades> atividades;
