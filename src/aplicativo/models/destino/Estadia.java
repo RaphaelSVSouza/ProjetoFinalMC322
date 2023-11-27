@@ -5,7 +5,7 @@ import aplicativo.models.utils.PossuiValor;
 public class Estadia implements PossuiValor {
     private CategoriaEstadia categoria;
     private String descricao;
-    private int valorPorDia;
+    private double valorPorDia;
 
     public CategoriaEstadia getCategoria() {
         return categoria;
@@ -23,17 +23,16 @@ public class Estadia implements PossuiValor {
         this.descricao = descricao;
     }
 
-    public int getValorPorDia() {
+    public double getValorPorDia() {
         return valorPorDia;
     }
 
-    public void setValorPorDia(int valorPorDia) {
+    public void setValorPorDia(double valorPorDia) {
         this.valorPorDia = valorPorDia;
     }
 
 	@Override
-	public int getValor() {
-		// TODO Auto-generated method stub
-		return 0;
+	public double getValor() {
+		return getValorPorDia();
 	}
 }

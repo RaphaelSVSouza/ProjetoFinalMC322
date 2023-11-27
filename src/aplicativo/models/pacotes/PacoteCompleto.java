@@ -7,17 +7,12 @@ import aplicativo.models.destino.Estadia;
 import aplicativo.models.destino.Lugar;
 import aplicativo.models.pessoas.Pessoa;
 import aplicativo.models.transportes.MeioTransporte;
-
-class PermissaoNegadaException extends Exception {
-    public PermissaoNegadaException(String mensagem) {
-        super(mensagem);
-    }
-}
+import aplicativo.models.utils.PermissaoNegadaException;
 
 
 public class PacoteCompleto extends Pacote {
     private List<Atividades> atividades;
-    private MeioTransporte meioTransporte;
+    private MeioTransporte meioTransporte = null;
     private Estadia estadia;
     private int duracaoViagem;
 
@@ -80,27 +75,25 @@ public class PacoteCompleto extends Pacote {
     @Override
     public void criarPacote(Pessoa pessoa, Estadia estadia, Lugar destino, LocalDate ida, LocalDate volta,
                              CategoriaPacote categoria, double fatorPreco) throws PermissaoNegadaException {
-        try {
-            if (!pessoa.isAdmin()) {
-             
-               throw new PermissaoNegadaException("Você não tem permissao de administrador.");
-            } 
-            // Lógica para criar o pacote
-            setCategoria(categoria);
-            setLugar(destino);
-            setEstadia(estadia);
-            setDataIda(ida);
-            setDataVolta(volta);
-            this.duracaoViagem = duracaoDias(ida, volta);
-
-            // Calcula preço final
-            double valorTotal = precoTotal(fatorPreco);
-            setValorTotal(valorTotal);
-            
-            System.out.println("Pacote de viagem criado com sucesso!");
-        } catch(PermissaoNegadaException e) {
-            System.out.println("Erro ao criar pacote: " + e.getMessage());
-        }
+        if (!pessoa.isAdmin()) {
+            throw new PermissaoNegadaException("Você não tem permissão de administrador.");
+        } 
+    
+        // Lógica para criar o pacote
+        setCategoria(categoria);
+        setLugar(destino);
+        setEstadia(estadia);
+        setDataIda(ida);
+        setDataVolta(volta);
+        this.duracaoViagem = duracaoDias(ida, volta);
+        this.meioTransporte = getMeioTransporte();
+    
+        // Calcula preço final
+        double valorTotal = precoTotal(fatorPreco);
+        setValorTotal(valorTotal);
+        
+        System.out.println("Pacote de viagem criado com sucesso!");
     }
+    
 
 }
