@@ -45,8 +45,41 @@ public class PacoteCompleto extends Pacote {
         this.estadia = estadia;
     }
 
+    public int getDuracaoViagem(){
+        return duracaoViagem;
+    }
+
+    public double precoTotal(double fatorPreco) {
+        /*
+        verifica se algum item que agrega ao pacote esta nao incluso no valor
+        final e então, é multiplicado por por um fator para caso de promoção ou não
+        sendo 0 "de graça" e 1 "sem desconto".
+        O desconto é calculado a partir de "Desconto = 1 - fatorPreco"
+        */
+
+        double precoTotal = 0;
+
+        if (estadia != null) {
+            precoTotal += estadia.getValorPorDia() * getDuracaoViagem();
+        }
+        
+        if (meioTransporte != null) {
+            precoTotal += meioTransporte.getValor();
+
+        }
+        
+        if (atividades != null) {
+            for(Atividades atividade : atividades) {
+                precoTotal += atividade.getValor();
+            }
+        }
+        
+        return precoTotal * fatorPreco;
+    }
+
     @Override
-    public void criarPacote(Pessoa pessoa, Estadia estadia, Lugar destino, LocalDate ida, LocalDate volta, CategoriaPacote categoria) throws PermissaoNegadaException{
+    public void criarPacote(Pessoa pessoa, Estadia estadia, Lugar destino, LocalDate ida, LocalDate volta,
+                             CategoriaPacote categoria, double fatorPreco) throws PermissaoNegadaException {
         try {
             if (!pessoa.isAdmin()) {
              
@@ -58,10 +91,12 @@ public class PacoteCompleto extends Pacote {
             setEstadia(estadia);
             setDataIda(ida);
             setDataVolta(volta);
+            this.duracaoViagem = duracaoDias(ida, volta);
 
-            duracaoViagem = duracaoDias(ida, volta);
-
-
+            // Calcula preço final
+            double valorTotal = precoTotal(fatorPreco);
+            setValorTotal(valorTotal);
+            
             System.out.println("Pacote de viagem criado com sucesso!");
         } catch(PermissaoNegadaException e) {
             System.out.println("Erro ao criar pacote: " + e.getMessage());

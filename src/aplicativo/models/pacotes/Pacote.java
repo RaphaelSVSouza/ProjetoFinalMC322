@@ -1,16 +1,17 @@
 package aplicativo.models.pacotes;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 import aplicativo.models.destino.*;
 import aplicativo.models.utils.*;
 import aplicativo.models.pessoas.Pessoa;
 
 public abstract class Pacote implements Reservavel {
     private CategoriaPacote categoria;
-    private int valorTotal;
+    private double valorTotal;
     private LocalDate dataIda;
     private LocalDate dataVolta;
-    private int duracaoDias;
     private Lugar lugar;
 
     public CategoriaPacote getCategoria() {
@@ -21,11 +22,11 @@ public abstract class Pacote implements Reservavel {
         this.categoria = categoria;
     }
 
-    public int getValorTotal() {
+    public double getValorTotal() {
         return valorTotal;
     }
 
-    public void setValorTotal(int valorTotal) {
+    public void setValorTotal(double valorTotal) {
         this.valorTotal = valorTotal;
     }
 
@@ -45,14 +46,6 @@ public abstract class Pacote implements Reservavel {
         this.dataVolta = dataVolta;
     }
 
-    public int getDuracaoDias() {
-        return duracaoDias;
-    }
-
-    public void setDuracaoDias(int duracaoDias) {
-        this.duracaoDias = duracaoDias;
-    }
-
     public Lugar getLugar() {
         return lugar;
     }
@@ -61,5 +54,11 @@ public abstract class Pacote implements Reservavel {
         this.lugar = lugar;
     }
 
-    public abstract void criarPacote(Pessoa pessoa, Estadia estadia, Lugar destino, LocalDate ida, LocalDate volta, CategoriaPacote categoria) throws PermissaoNegadaException;
+    public int duracaoDias(LocalDate ida, LocalDate volta) {
+        long diferencaDias = ChronoUnit.DAYS.between(ida, volta);
+
+        return Math.abs((int) diferencaDias);
+    }
+
+    public abstract void criarPacote(Pessoa pessoa, Estadia estadia, Lugar destino, LocalDate ida, LocalDate volta, CategoriaPacote categoria, double fatorPreco) throws PermissaoNegadaException;
 }

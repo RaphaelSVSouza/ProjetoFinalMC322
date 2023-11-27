@@ -15,7 +15,7 @@ public class Pessoa {
     }
 
     // Getters e setters
-    public boolean  isAdmin() {
+    public boolean isAdmin() {
         return admin;
     }
 
