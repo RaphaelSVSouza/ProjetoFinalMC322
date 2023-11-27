@@ -30,8 +30,6 @@ public class CadastroUsuario {
             usuarios.add(novoUsuario);
 
             System.out.println("Cadastro realizado com sucesso!");
-
-            scanner.close();
         }
 
         public static List<Usuario> getUsuarios() {
