@@ -41,21 +41,20 @@ public class Main {
         Onibus onibus = new Onibus();
         onibus.setValor(100.0);
 		
-		ServicoPacotes servicoPacotes = new ServicoPacotes();
-
+		
         // Criando pacotes
-		try {
-			PacoteCompleto pacote1 = new PacoteCompleto();
-			pacote1.setMeioTransporte(aviao);
-			pacote1.criarPacote(admin, estadia2, destino1, LocalDate.now(), LocalDate.now().plusDays(7), CategoriaPacote.RELAXAMENTO, 1.0);
-        	
-			// adiciona ao serviço de pacotes e coloca todos os pacotes numa lista para filtragem
-			servicoPacotes.adicionarPacote(pacote1); 
-		} catch (PermissaoNegadaException e) {
-			System.out.println("Erro ao criar pacote: " + e.getMessage());
+		PacoteCompleto pacote1 = ServicoPacotes.criarPacote(admin, estadia2, destino1, LocalDate.now(), LocalDate.now().plusDays(7), CategoriaPacote.RELAXAMENTO, 1.0, aviao);
+		
+		
+		ServicoPacotes servicoPacotes = new ServicoPacotes();
+		
+		if (pacote1 != null) {
+			servicoPacotes.adicionarPacote(pacote1);
 		}
 
-
+		// Remove o pacote
+		servicoPacotes.removerPacote(admin, pacote1);
+		
         // Testando os métodos de listagem
         List<Pacote> pacotesPorPreco = servicoPacotes.listarPorPreco(20000);
         List<Pacote> pacotesPorData = servicoPacotes.listarPorData(LocalDate.now());

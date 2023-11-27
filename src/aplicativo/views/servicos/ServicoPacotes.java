@@ -4,7 +4,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import aplicativo.models.destino.*;
+import aplicativo.models.pacotes.CategoriaPacote;
 import aplicativo.models.pacotes.Pacote;
+import aplicativo.models.pacotes.PacoteCompleto;
+import aplicativo.models.pessoas.Pessoa;
+import aplicativo.models.transportes.MeioTransporte;
+import aplicativo.models.utils.PermissaoNegadaException;
 
 public class ServicoPacotes {
     private List<Pacote> pacotes;
@@ -47,4 +52,40 @@ public class ServicoPacotes {
         }
         return pacotesPorLocal;
     }
+
+    public void removerPacote(Pessoa admin, PacoteCompleto pacote) {
+        try {
+            if (admin.isAdmin()) {
+                boolean removido = pacotes.remove(pacote);
+                if (removido) {
+                    System.out.println("Pacote removido com sucesso!");
+                } else {
+                    System.out.println("Pacote não encontrado para remoção.");
+                }
+            } else {
+                throw new PermissaoNegadaException("Apenas administradores podem remover pacotes.");
+            }
+        } catch (PermissaoNegadaException e) {
+            System.out.println("Erro ao remover pacote: " + e.getMessage());
+        }
+    }
+    
+    
+    public static PacoteCompleto criarPacote(Pessoa admin, Estadia estadia, Lugar destino, LocalDate ida, 
+                                            LocalDate volta, CategoriaPacote categoria, double fatorPreco, MeioTransporte meioTransporte) {                                   
+        PacoteCompleto novoPack = null;
+
+        try {
+            novoPack = new PacoteCompleto();
+            novoPack.setMeioTransporte(meioTransporte);
+            novoPack.criarPacote(admin, estadia, destino, ida, volta, categoria, fatorPreco);
+        } catch (PermissaoNegadaException e) {
+            System.out.println("Erro ao criar pacote: " + e.getMessage());
+        }
+
+        return novoPack;
+    }
+
+
 }
+
