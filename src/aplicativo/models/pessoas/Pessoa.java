@@ -4,15 +4,25 @@ public class Pessoa {
     private String nome;
     private String email;
     private String senha;
+    private boolean admin;
 
     // Construtor
     public Pessoa(String nome, String email, String senha) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
+        this.admin = false;
     }
 
     // Getters e setters
+    public boolean  isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean isAdmin) {
+        this.admin = isAdmin;
+    }
+
     public String getNome() {
         return nome;
     }

@@ -6,6 +6,7 @@ public class Administrador extends Pessoa {
     public Administrador(String nome, String email, String senha, String cargo) {
         super(nome, email, senha);
         this.cargo = cargo;
+        setAdmin(true);
     }
 
     // Getter e setter específico para Administrador

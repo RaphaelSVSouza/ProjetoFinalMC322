@@ -3,6 +3,7 @@ package aplicativo.models.pacotes;
 import java.time.LocalDate;
 import aplicativo.models.destino.*;
 import aplicativo.models.utils.*;
+import aplicativo.models.pessoas.Pessoa;
 
 public abstract class Pacote implements Reservavel {
     private CategoriaPacote categoria;
@@ -59,4 +60,6 @@ public abstract class Pacote implements Reservavel {
     public void setLugar(Lugar lugar) {
         this.lugar = lugar;
     }
+
+    public abstract void criarPacote(Pessoa pessoa, Estadia estadia, Lugar destino, LocalDate ida, LocalDate volta, CategoriaPacote categoria) throws PermissaoNegadaException;
 }
