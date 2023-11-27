@@ -6,6 +6,6 @@ public enum CategoriaPacote {
     CULTURAL,
     ROMANTICO,
     LUXO,
-    TODO_INCLUIDO,
+    TUDO_INCLUIDO,
     ECOTURISMO
 }

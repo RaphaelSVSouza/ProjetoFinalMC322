@@ -5,10 +5,9 @@ import java.util.List;
 import java.util.Scanner;
 
 import aplicativo.models.pessoas.Usuario;
-
+	
 public class CadastroUsuario {
-    private static List<Usuario> usuarios = new ArrayList<>();
-
+		private static List<Usuario> usuarios = new ArrayList<>();
     	public static void cadastrarUsuario() {
             Scanner scanner = new Scanner(System.in);
 
