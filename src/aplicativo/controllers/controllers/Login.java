@@ -13,9 +13,9 @@ import aplicativo.models.destino.Lugar;
 import java.time.LocalDate;
 
 public class Login {
-	private static ColecoesPacotes<PacoteCompleto> servicoPacotes;
+	// private static ColecoesPacotes<PacoteCompleto> servicoPacotes;
 	
-    public static void realizarLogin() {
+    public static void realizarLogin(ColecoesPacotes<PacoteCompleto> servicoPacotes) {
     	Scanner scanner = new Scanner(System.in);
     	while (true) {
 	        System.out.println("Bem-vindo! Por favor, faça login:");
@@ -47,6 +47,7 @@ public class Login {
 
 				} else { // usuario foi autenticado como Usuario
 					System.out.println("Login bem-sucedido. Bem-vindo usuário " + usuarioAutenticado.getNome() + "!");
+					while(true) {
 					System.out.println("Digite 1 para filtrar os pacotes por preço.");
 					System.out.println("Digite 2 para filtrar os pacotes por categoria.");
 					System.out.println("Digite 3 para filtrar os pacotes por destino");
@@ -197,6 +198,7 @@ public class Login {
 						break;
 					}
 				}
+			}
 
 				break;
 	        } else {
@@ -205,7 +207,7 @@ public class Login {
 	
 	            if (resposta.equalsIgnoreCase("sim")) {
 	                // Realiza o cadastro usando a classe CadastrarUsuario
-	                CadastroUsuario.cadastrarUsuario();
+	                CadastroUsuario.cadastrarUsuario(servicoPacotes);
 	            } else {
 	                System.out.println("Obrigado. Até mais!");
 	            }

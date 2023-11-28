@@ -63,7 +63,7 @@ public class ColecoesPacotes<T extends Pacote> {
     }
     
 
-    public void removerPacote(Pessoa admin, T pacote) {
+    public void removerPacote(Pessoa admin, PacoteCompleto pacote) {
         try {
             if (admin.isAdmin()) {
                 boolean removido = pacotes.remove(pacote);

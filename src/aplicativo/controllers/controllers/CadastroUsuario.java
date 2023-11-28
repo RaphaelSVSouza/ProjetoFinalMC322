@@ -5,12 +5,15 @@ import java.util.List;
 import java.util.Scanner;
 
 import aplicativo.models.pessoas.Usuario;
+import aplicativo.models.utils.ColecoesPacotes;
 import aplicativo.models.pessoas.Pessoa;
+import aplicativo.models.pacotes.PacoteCompleto;
 import aplicativo.models.pessoas.Administrador;
 import controllers.Login;
 	
 public class CadastroUsuario {
     private static List<Pessoa> pessoas = new ArrayList<>();
+    ColecoesPacotes<PacoteCompleto> servicoPacotes;
 
     static {
         // Administradores ja cadastrados no sistema
@@ -21,7 +24,7 @@ public class CadastroUsuario {
         pessoas.add(admin2);
     }
 
-    public static void cadastrarUsuario() {
+    public static void cadastrarUsuario(ColecoesPacotes<PacoteCompleto> servicoPacotes) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Criando nova conta. Por favor, forneça as informações necessárias:");
@@ -43,9 +46,8 @@ public class CadastroUsuario {
 
         System.out.println("Cadastro realizado com sucesso!");
 
-        scanner.close();
 
-        Login.realizarLogin();
+        Login.realizarLogin(servicoPacotes);
     }
 
     public static List<Pessoa> getUsers() {
