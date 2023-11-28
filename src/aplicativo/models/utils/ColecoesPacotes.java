@@ -1,31 +1,30 @@
-package servicos;
+package aplicativo.models.utils;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import aplicativo.models.destino.*;
+import aplicativo.models.excecoes.PermissaoNegadaException;
 import aplicativo.models.pacotes.CategoriaPacote;
 import aplicativo.models.pacotes.Pacote;
 import aplicativo.models.pacotes.PacoteCompleto;
 import aplicativo.models.pessoas.Pessoa;
 import aplicativo.models.transportes.MeioTransporte;
-import aplicativo.models.utils.PermissaoNegadaException;
 
-public class ServicoPacotes {
-    private List<Pacote> pacotes;
+public class ColecoesPacotes<T extends Pacote> {
+    private List<T> pacotes;
 
-
-    public ServicoPacotes() {
+    public ColecoesPacotes() {
         this.pacotes = new ArrayList<>();
     }
 
-    public void adicionarPacote(Pacote pacote) {
+    public void adicionarPacote(T pacote) {
         this.pacotes.add(pacote);
     }
 
-    public List<Pacote> listarPorPreco(int precoMaximo) {
-        List<Pacote> pacotesPorPreco = new ArrayList<>();
-        for (Pacote pacote : pacotes) {
+    public List<T> listarPorPreco(int precoMaximo) {
+        List<T> pacotesPorPreco = new ArrayList<>();
+        for (T pacote : pacotes) {
             if (pacote.getValorTotal() <= precoMaximo) {
                 pacotesPorPreco.add(pacote);
             }
@@ -33,9 +32,9 @@ public class ServicoPacotes {
         return pacotesPorPreco;
     }
 
-    public List<Pacote> listarPorData(LocalDate dataDesejada) {
-        List<Pacote> pacotesPorData = new ArrayList<>();
-        for (Pacote pacote : pacotes) {
+    public List<T> listarPorData(LocalDate dataDesejada) {
+        List<T> pacotesPorData = new ArrayList<>();
+        for (T pacote : pacotes) {
             if (pacote.getDataIda().isEqual(dataDesejada) || pacote.getDataIda().isAfter(dataDesejada)) {
                 pacotesPorData.add(pacote);
             }
@@ -53,7 +52,7 @@ public class ServicoPacotes {
         return pacotesPorLocal;
     }
 
-    public void removerPacote(Pessoa admin, PacoteCompleto pacote) {
+    public void removerPacote(Pessoa admin, T pacote) {
         try {
             if (admin.isAdmin()) {
                 boolean removido = pacotes.remove(pacote);

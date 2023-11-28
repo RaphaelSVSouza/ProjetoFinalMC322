@@ -1,12 +1,12 @@
 package main;
 import aplicativo.models.destino.*;
+import aplicativo.models.excecoes.PermissaoNegadaException;
 import aplicativo.models.pacotes.*;
 import aplicativo.models.pessoas.Administrador;
 import aplicativo.models.pessoas.Pessoa;
 import aplicativo.models.transportes.Aviao;
 import aplicativo.models.transportes.Onibus;
-import servicos.ServicoPacotes;
-import aplicativo.models.utils.PermissaoNegadaException;
+import aplicativo.models.utils.ColecoesPacotes;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -43,10 +43,10 @@ public class Main {
 		
 		
         // Criando pacotes
-		PacoteCompleto pacote1 = ServicoPacotes.criarPacote(admin, estadia2, destino1, LocalDate.now(), LocalDate.now().plusDays(7), CategoriaPacote.RELAXAMENTO, 1.0, aviao);
+		PacoteCompleto pacote1 = ColecoesPacotes.criarPacote(admin, estadia2, destino1, LocalDate.now(), LocalDate.now().plusDays(7), CategoriaPacote.RELAXAMENTO, 1.0, aviao);
 		
 		
-		ServicoPacotes servicoPacotes = new ServicoPacotes();
+		ColecoesPacotes servicoPacotes = new ColecoesPacotes();
 		
 		if (pacote1 != null) {
 			servicoPacotes.adicionarPacote(pacote1);
