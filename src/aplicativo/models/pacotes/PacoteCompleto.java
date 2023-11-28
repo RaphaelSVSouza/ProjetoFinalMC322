@@ -5,9 +5,9 @@ import java.util.List;
 import aplicativo.models.destino.Atividades;
 import aplicativo.models.destino.Estadia;
 import aplicativo.models.destino.Lugar;
+import aplicativo.models.excecoes.PermissaoNegadaException;
 import aplicativo.models.pessoas.Pessoa;
 import aplicativo.models.transportes.MeioTransporte;
-import aplicativo.models.utils.PermissaoNegadaException;
 
 
 public class PacoteCompleto extends Pacote {

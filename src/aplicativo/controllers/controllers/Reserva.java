@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import aplicativo.models.pacotes.PacoteCompleto;
 import aplicativo.models.pessoas.Usuario;
-import servicos.ServicoPacotes;
+import aplicativo.models.utils.ColecoesPacotes;
 import aplicativo.models.pessoas.Pessoa;
 public class Reserva {
     private static List<Reserva> reservas = new ArrayList<>();
@@ -13,7 +13,7 @@ public class Reserva {
     private Pessoa usuario;
     private PacoteCompleto pacoteViagem;
     private LocalDate dataReserva;
-    private ServicoPacotes servicoPacotes;
+    private ColecoesPacotes servicoPacotes;
 
     public Reserva(Pessoa usuario, PacoteCompleto pacoteViagem) {
         this.usuario = usuario;
