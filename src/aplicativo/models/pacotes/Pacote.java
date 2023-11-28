@@ -2,7 +2,6 @@ package aplicativo.models.pacotes;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-
 import aplicativo.models.destino.*;
 import aplicativo.models.excecoes.PermissaoNegadaException;
 import aplicativo.models.utils.*;
