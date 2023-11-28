@@ -13,7 +13,7 @@ public class Reserva {
     private Pessoa usuario;
     private PacoteCompleto pacoteViagem;
     private LocalDate dataReserva;
-    private ColecoesPacotes servicoPacotes;
+    private ColecoesPacotes<PacoteCompleto> servicoPacotes;
 
     public Reserva(Pessoa usuario, PacoteCompleto pacoteViagem) {
         this.usuario = usuario;
