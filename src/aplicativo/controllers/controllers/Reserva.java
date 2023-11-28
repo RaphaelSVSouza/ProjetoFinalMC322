@@ -67,4 +67,14 @@ public class Reserva {
     public static List<Reserva> getReservas() {
         return reservas;
     }
+
+    public static List<Reserva> minhasReservas(Pessoa usuarioDesejado) {
+        List<Reserva> minhasReservas = new ArrayList<>();
+        for (Reserva reverva : reservas){
+            if (reverva.getUsuario().equals(usuarioDesejado)){
+                minhasReservas.add(reverva);
+            }
+        }
+        return minhasReservas;
+    }
 }
