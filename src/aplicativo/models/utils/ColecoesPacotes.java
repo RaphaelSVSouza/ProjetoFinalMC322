@@ -42,15 +42,26 @@ public class ColecoesPacotes<T extends Pacote> {
         return pacotesPorData;
     }
 
-    public List<Pacote> listarPorLocal(Lugar localDesejado) {
-        List<Pacote> pacotesPorLocal = new ArrayList<>();
-        for (Pacote pacote : pacotes) {
+    public List<T> listarPorLocal(Lugar localDesejado) {
+        List<T> pacotesPorLocal = new ArrayList<>();
+        for (T pacote : pacotes) {
             if (pacote.getLugar().getNomeDestino().equalsIgnoreCase(localDesejado.getNomeDestino())) {
                 pacotesPorLocal.add(pacote);
             }
         }
         return pacotesPorLocal;
     }
+
+    public List<T> listarPorCategoria(CategoriaPacote categoriaDesejada) {
+        List<T> pacotesPorCategoria = new ArrayList<>();
+        for (T pacote : pacotes) {
+            if (pacote.getCategoria() == categoriaDesejada) {
+                pacotesPorCategoria.add(pacote);
+            }
+        }
+        return pacotesPorCategoria;
+    }
+    
 
     public void removerPacote(Pessoa admin, T pacote) {
         try {

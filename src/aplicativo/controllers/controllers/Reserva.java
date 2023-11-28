@@ -3,6 +3,8 @@ package controllers;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import aplicativo.models.pacotes.Pacote;
 import aplicativo.models.pacotes.PacoteCompleto;
 import aplicativo.models.pessoas.Usuario;
 import aplicativo.models.utils.ColecoesPacotes;
@@ -42,7 +44,7 @@ public class Reserva {
         return false;
     }
 
-    public void realizarReserva(Pessoa usuario, PacoteCompleto pacoteViagem) {
+    public static void realizarReserva(Pessoa usuario, PacoteCompleto pacoteViagem, ColecoesPacotes<?> pacotes) {
         if (usuario instanceof Usuario){    // verifica se a reserva é feita por um usuario
 
             if (pacoteJaReservado(pacoteViagem)) {  // verifica se ja esta numa lista de reservas
@@ -55,7 +57,12 @@ public class Reserva {
                 usuario.setAdmin(true); // possibilita a remoção de pacote ao reservar
 
                 // Remover o pacote do serviço de pacotes
-                servicoPacotes.removerPacote(usuario, pacoteViagem);
+                try {
+					pacotes.removerPacote(usuario, pacoteViagem);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
                 
                 usuario.setAdmin(false); // revoga o privilégio de administrador do usuario automaticamente
             }

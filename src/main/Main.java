@@ -7,12 +7,15 @@ import aplicativo.models.pessoas.Pessoa;
 import aplicativo.models.transportes.Aviao;
 import aplicativo.models.transportes.Onibus;
 import aplicativo.models.utils.ColecoesPacotes;
+import controllers.Login;
 
 import java.time.LocalDate;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+
+    Login.realizarLogin();
 
 	Administrador admin = new Administrador("Admin", "admin@example.com", "senha", "getente");
 
