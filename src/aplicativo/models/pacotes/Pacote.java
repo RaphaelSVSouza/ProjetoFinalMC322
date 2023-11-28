@@ -13,7 +13,6 @@ public abstract class Pacote implements Reservavel {
     private LocalDate dataIda;
     private LocalDate dataVolta;
     private Lugar lugar;
-    private int vagasDisponiveis;
 
     public CategoriaPacote getCategoria() {
         return categoria;

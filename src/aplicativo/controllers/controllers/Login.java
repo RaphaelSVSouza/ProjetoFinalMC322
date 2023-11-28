@@ -2,6 +2,9 @@ package controllers;
 
 import java.util.Scanner;
 import aplicativo.models.pessoas.Usuario;
+import aplicativo.models.pessoas.Administrador;
+import aplicativo.models.pessoas.Pessoa;
+
 
 public class Login {
 	
@@ -18,11 +21,19 @@ public class Login {
 	        String senha = scanner.nextLine();
 	
 	        // Tenta autenticar o usuário
-	        Usuario usuarioAutenticado = autenticarUsuario(email, senha);
-	
+	        Pessoa usuarioAutenticado = autenticarUsuario(email, senha);
+			
 	        if (usuarioAutenticado != null) {
-	            System.out.println("Login bem-sucedido. Bem-vindo, " + usuarioAutenticado.getNome() + "!");
-	            break;
+
+				if (usuarioAutenticado instanceof Administrador) {
+					Administrador admin = (Administrador) usuarioAutenticado;
+					String nomeAdmin = admin.getNome();
+					System.out.println("Login bem-sucedido. Bem-vindo, Adminitrador:" + nomeAdmin);
+				} else {
+					System.out.println("Login bem-sucedido. Bem-vindo, " + usuarioAutenticado.getNome() + "!");
+				}
+
+				break;
 	        } else {
 	            System.out.println("Usuário não encontrado. Deseja criar uma nova conta? (sim/não)");
 	            String resposta = scanner.nextLine();
@@ -40,11 +51,11 @@ public class Login {
     }
     
     // Método para autenticar o usuário
-    private static Usuario autenticarUsuario(String email, String senha) {
+    private static Pessoa autenticarUsuario(String email, String senha) {
         // Obtém a lista de usuários do cadastro
-        for (Usuario usuario : CadastroUsuario.getUsuarios()) {
-            if (usuario.getEmail().equals(email) && usuario.getSenha().equals(senha)) {
-                return usuario; // Usuário autenticado
+        for (Pessoa user : CadastroUsuario.getUsers()) {
+            if (user.getEmail().equals(email) && user.getSenha().equals(senha)) {
+                return user; // Usuário autenticado
             }
         }
         return null; // Usuário não encontrado
