@@ -46,7 +46,7 @@ public class Main {
 		PacoteCompleto pacote1 = ColecoesPacotes.criarPacote(admin, estadia2, destino1, LocalDate.now(), LocalDate.now().plusDays(7), CategoriaPacote.RELAXAMENTO, 1.0, aviao);
 		
 		
-		ColecoesPacotes servicoPacotes = new ColecoesPacotes();
+		ColecoesPacotes<Pacote> servicoPacotes = new ColecoesPacotes<Pacote>();
 		
 		if (pacote1 != null) {
 			servicoPacotes.adicionarPacote(pacote1);
