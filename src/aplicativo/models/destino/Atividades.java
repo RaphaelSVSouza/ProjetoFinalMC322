@@ -5,7 +5,7 @@ import aplicativo.models.utils.PossuiValor;
 public class Atividades implements PossuiValor {
     private CategoriaAtividade categoria;
     private String descricao;
-    private int valor;
+    private double valor;
     private int duracaoHoras;
 
     public CategoriaAtividade getCategoria() {
@@ -25,11 +25,11 @@ public class Atividades implements PossuiValor {
     }
 
     @Override
-    public int getValor() {
+    public double getValor() {
         return valor;
     }
 
-    public void setValor(int valor) {
+    public void setValor(double valor) {
         this.valor = valor;
     }
 

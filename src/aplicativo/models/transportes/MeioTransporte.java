@@ -6,7 +6,7 @@ public abstract class MeioTransporte implements PossuiValor {
     private CategoriaTransporte categoria;
     private String classePassagem;
     private String compania;
-    private int valor;
+    private double valor;
 
     public CategoriaTransporte getCategoria() {
         return categoria;
@@ -33,11 +33,11 @@ public abstract class MeioTransporte implements PossuiValor {
     }
 
     @Override
-    public int getValor() {
+    public double getValor() {
         return valor;
     }
 
-    public void setValor(int valor) {
+    public void setValor(double valor) {
         this.valor = valor;
     }
 }

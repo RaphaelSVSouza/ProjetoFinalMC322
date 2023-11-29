@@ -4,7 +4,17 @@ import aplicativo.models.utils.PossuiValor;
 public class Lugar implements PossuiValor {
     private String descricao;
     private String pathImagens;
-    private int valor;
+    private double valor;
+    private String nomeDestino;
+
+
+    public String getNomeDestino() {
+        return this.nomeDestino;
+    }
+
+    public void setNomeDestino(String nomeDestino) {
+        this.nomeDestino = nomeDestino;
+    }
 
     public String getDescricao() {
         return descricao;
@@ -23,11 +33,11 @@ public class Lugar implements PossuiValor {
     }
 
     @Override
-    public int getValor() {
+    public double getValor() {
         return valor;
     }
 
-    public void setValor(int valor) {
+    public void setValor(double valor) {
         this.valor = valor;
     }
 }
