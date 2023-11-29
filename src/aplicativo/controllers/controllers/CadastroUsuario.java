@@ -6,10 +6,10 @@ import java.util.Scanner;
 
 import aplicativo.models.pessoas.Usuario;
 import aplicativo.models.utils.ColecoesPacotes;
+import servicos.Login;
 import aplicativo.models.pessoas.Pessoa;
 import aplicativo.models.pacotes.PacoteCompleto;
 import aplicativo.models.pessoas.Administrador;
-import controllers.Login;
 	
 public class CadastroUsuario {
     private static List<Pessoa> pessoas = new ArrayList<>();

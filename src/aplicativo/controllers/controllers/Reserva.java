@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import aplicativo.models.pacotes.Pacote;
 import aplicativo.models.pacotes.PacoteCompleto;
 import aplicativo.models.pessoas.Usuario;
 import aplicativo.models.utils.ColecoesPacotes;
@@ -15,7 +14,7 @@ public class Reserva {
     private Pessoa usuario;
     private PacoteCompleto pacoteViagem;
     private LocalDate dataReserva;
-    private ColecoesPacotes<PacoteCompleto> servicoPacotes;
+    //private ColecoesPacotes<PacoteCompleto> servicoPacotes;
 
     public Reserva(Pessoa usuario, PacoteCompleto pacoteViagem) {
         this.usuario = usuario;
@@ -60,7 +59,6 @@ public class Reserva {
                 try {
 					pacotes.removerPacote(usuario, pacoteViagem);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
                 

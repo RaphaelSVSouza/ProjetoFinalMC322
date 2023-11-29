@@ -1,20 +1,23 @@
-package controllers;
+package servicos;
 
 import java.util.List;
 import java.util.Scanner;
-import aplicativo.models.pessoas.Usuario;
 import aplicativo.models.utils.ColecoesPacotes;
+import controllers.CadastroUsuario;
+import controllers.Reserva;
 import aplicativo.models.pacotes.CategoriaPacote;
-import aplicativo.models.pacotes.Pacote;
 import aplicativo.models.pacotes.PacoteCompleto;
 import aplicativo.models.pessoas.Administrador;
 import aplicativo.models.pessoas.Pessoa;
+import aplicativo.models.transportes.Aviao;
+import aplicativo.models.transportes.Onibus;
+import aplicativo.models.destino.CategoriaEstadia;
+import aplicativo.models.destino.Estadia;
 import aplicativo.models.destino.Lugar;
 import java.time.LocalDate;
 
 public class Login {
-	// private static ColecoesPacotes<PacoteCompleto> servicoPacotes;
-	
+
     public static void realizarLogin(ColecoesPacotes<PacoteCompleto> servicoPacotes) {
     	Scanner scanner = new Scanner(System.in);
     	while (true) {
@@ -41,11 +44,58 @@ public class Login {
 					
 					if (operacao.equalsIgnoreCase("criar pacote")) {
 						// função de ver todos os parametros (estadia, lugar, categoria do pacote)
+						System.out.print("Digite o lugar do pacote: ");
+                        String novoLugar = scanner.nextLine();
+						
+                        System.out.print("Digite o valor do lugar: ");
+                        double novoValor = scanner.nextDouble();
+                        scanner.nextLine();
+
+						Lugar novoDestino = new Lugar();
+						novoDestino.setNomeDestino(novoLugar);
+						novoDestino.setValor(novoValor);
+						
+						System.out.print("Digite a categoria da estadia: ");
+						String categoriaEstadiaStr = scanner.nextLine();
+						CategoriaEstadia categoriaEstadia = CategoriaEstadia.valueOf(categoriaEstadiaStr.toUpperCase());
+
+						System.out.print("Digite o valor por dia da estadia: ");
+						double valorPorDia = scanner.nextDouble();
+						scanner.nextLine();
+
+						Estadia novaEstadia = new Estadia();
+						novaEstadia.setCategoria(categoriaEstadia);
+						novaEstadia.setValorPorDia(valorPorDia);
+
+						System.out.println("Digite a categoria do pacote: ");
+						String categoriaStr = scanner.nextLine();
+						CategoriaPacote categoriaPacote = CategoriaPacote.valueOf(categoriaStr.toUpperCase());
+
+						System.out.println("Digite o meio de transporte do pacote: ");
+						String meioTransporte = scanner.nextLine();
+						if (meioTransporte.toLowerCase() == "aviao"){
+							System.out.println("Digite o valor do meio de transporte: ");
+							double valorMeioDeTransporte = scanner.nextDouble();
+							Aviao aviao = new Aviao();
+        					aviao.setValor(valorMeioDeTransporte);
+							System.out.println("Digite o fator preço: ");
+							double fp = scanner.nextDouble();
+							scanner.nextLine();
+							PacoteCompleto novoPacote = ColecoesPacotes.criarPacote(admin, novaEstadia, novoDestino, LocalDate.now(), LocalDate.now().plusDays(7), categoriaPacote, fp, aviao);
+						}
+						else if (meioTransporte.toLowerCase() == "onibus"){
+							System.out.println("Digite o valor do meio de transporte: ");
+							double valorMeioDeTransporte = scanner.nextDouble();
+							Onibus onibus = new Onibus();
+        					onibus.setValor(valorMeioDeTransporte);
+							System.out.println("Digite o fator preço: ");
+							double fp = scanner.nextDouble();
+							scanner.nextLine();
+							PacoteCompleto novoPacote = ColecoesPacotes.criarPacote(admin, novaEstadia, novoDestino, LocalDate.now(), LocalDate.now().plusDays(7), categoriaPacote, fp, onibus);
+						}
 					}
-
-
-
-				} else { // usuario foi autenticado como Usuario
+				}
+				else { // usuario foi autenticado como Usuario
 					System.out.println("Login bem-sucedido. Bem-vindo usuário " + usuarioAutenticado.getNome() + "!");
 					while(true) {
 					System.out.println("Digite 1 para filtrar os pacotes por preço.");
@@ -191,16 +241,17 @@ public class Login {
 						}
 
 					} else if (acao.equalsIgnoreCase("5")) {
+						System.out.println("Até mais!");
 						break;	
 					} else {
 						System.out.println("Entrada inválida, saindo da plataforma.");
 						System.out.println("Obrigado. Até mais!");
 						break;
 					}
+					break;
 				}
-			}
-
 				break;
+			}
 	        } else {
 	            System.out.println("Usuário não encontrado. Deseja criar uma nova conta? (sim/não)");
 	            String resposta = scanner.nextLine();
@@ -212,7 +263,7 @@ public class Login {
 	                System.out.println("Obrigado. Até mais!");
 	            }
 	        }
-	        
+	    break;   
 	    }
     	scanner.close();
     }
