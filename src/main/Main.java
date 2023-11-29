@@ -1,21 +1,21 @@
 package main;
 import aplicativo.models.destino.*;
-import aplicativo.models.excecoes.PermissaoNegadaException;
+//import aplicativo.models.excecoes.PermissaoNegadaException;
 import aplicativo.models.pacotes.*;
 import aplicativo.models.pessoas.Administrador;
-import aplicativo.models.pessoas.Pessoa;
+//import aplicativo.models.pessoas.Pessoa;
 import aplicativo.models.transportes.Aviao;
 import aplicativo.models.transportes.Onibus;
 import aplicativo.models.utils.ColecoesPacotes;
-import controllers.Login;
+import servicos.Login;
 
 import java.time.LocalDate;
-import java.util.List;
+//import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
 
-        
+        // Instanciando um administrador
         Administrador admin = new Administrador("Admin", "admin@example.com", "senha", "getente");
         
         // Criando alguns destinos
@@ -57,31 +57,5 @@ public class Main {
 		}
         
         Login.realizarLogin(servicoPacotes);
-	// 	// Remove o pacote
-	// 	servicoPacotes.removerPacote(admin, pacote1);
-		
-    //     // Testando os métodos de listagem
-    //     List<Pacote> pacotesPorPreco = servicoPacotes.listarPorPreco(20000);
-    //     List<Pacote> pacotesPorData = servicoPacotes.listarPorData(LocalDate.now());
-    //     List<Pacote> pacotesPorLocal = servicoPacotes.listarPorLocal(destino1);
-
-    //     // Exibindo os resultados
-    //     System.out.println("Pacotes por preço:");
-    //     for (Pacote pacote : pacotesPorPreco) {
-    //         System.out.println("Destino: " + pacote.getLugar().getNomeDestino() + ", Data de Ida: " + 
-	// 							pacote.getDataIda() + ", Preço: " + pacote.getValorTotal());
-    //     }
-
-    //     System.out.println("\nPacotes por data:");
-    //     for (Pacote pacote : pacotesPorData) {
-    //         System.out.println("Destino: " + pacote.getLugar().getNomeDestino() + ", Data de Ida: " + 
-	// 							pacote.getDataIda() + ", Preço: " + pacote.getValorTotal());
-    //     }
-
-    //     System.out.println("\nPacotes por local:");
-    //     for (Pacote pacote : pacotesPorLocal) {
-    //         System.out.println("Destino: " + pacote.getLugar().getNomeDestino() + ", Data de Ida: " + 
-	// 							pacote.getDataIda() + ", Preço: " + pacote.getValorTotal());
-    //     }
     }
 }
